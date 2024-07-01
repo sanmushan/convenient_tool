@@ -28,10 +28,23 @@ public class CalendarActivity extends AppCompatActivity {
 
         // 模拟接口返回的数据
         Map<String, String> markedDays = new HashMap<>();
-        markedDays.put("2024-06-05", "#FF0000"); // 红色
-        markedDays.put("2024-06-10", "#00FF00"); // 绿色
-        markedDays.put("2024-06-15", "#0000FF"); // 蓝色
+        markedDays.put("2024-07-05", "#FF0000"); // 红色
+        markedDays.put("2024-07-10", "#00FF00"); // 绿色
+        markedDays.put("2024-07-15", "#0000FF"); // 蓝色
+        markedDays.put("2024-08-15", "#0000FF"); // 蓝色
+        markedDays.put("2024-08-05", "#0000FF"); // 蓝色
         // 设置标识日期
         calendarView.setMarkedDays(markedDays);
+        calendarView.setOnClickListener(new CalendarView.OnClickListener() {
+            @Override
+            public void onCancelClicked() {
+
+            }
+
+            @Override
+            public void onConfirmClicked() {
+
+            }
+        });
     }
 }

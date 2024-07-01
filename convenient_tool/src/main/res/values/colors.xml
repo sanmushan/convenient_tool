@@ -20,5 +20,6 @@
     <color name="refresh">#6452A3</color>
     <color name="bg_color">#DDEDEA</color>
     <color name="yellow">#EAA45D</color>
-
+    <color name="white">#FFFFFFFF</color>
+    <color name="line_color">#EEEEEE</color>
 </resources>

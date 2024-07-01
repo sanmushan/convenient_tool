@@ -36,8 +36,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation project(':convenient_tool')
 
-//    implementation 'com.zhy:base-rvadapter:3.0.3'
+    implementation project(':convenient_tool')
+//    implementation 'com.github.sanmushan:convenient_tool:v1.0.0'
+
 
 }

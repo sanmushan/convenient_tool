@@ -23,11 +23,31 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
     private int selectedPosition = -1;
     private Calendar calendar;
     private Map<String, String> markedDays;
+    private Calendar today;
 
     public CalendarAdapter(List<String> days, Calendar calendar, Map<String, String> markedDays) {
         this.days = days;
         this.calendar = calendar;
         this.markedDays = markedDays;
+        this.today = Calendar.getInstance();
+        setSelectedPosition();
+    }
+
+    public void setSelectedPosition(int position) {
+        if (selectedPosition != position) {
+            notifyItemChanged(selectedPosition);
+            selectedPosition = position;
+            notifyItemChanged(selectedPosition);
+        }
+    }
+
+    private void setSelectedPosition() {
+        if (today.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) &&
+                today.get(Calendar.MONTH) == calendar.get(Calendar.MONTH)) {
+            selectedPosition = today.get(Calendar.DAY_OF_MONTH) + calendar.get(Calendar.DAY_OF_WEEK) - 2;
+        } else {
+            selectedPosition = calendar.get(Calendar.DAY_OF_WEEK) - 2;
+        }
     }
 
     @NonNull
@@ -47,7 +67,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             holder.dayText.setTextColor(Color.BLACK);
             holder.dayText.setBackground(null);
 
-            Calendar today = Calendar.getInstance();
             if (today.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) &&
                     today.get(Calendar.MONTH) == calendar.get(Calendar.MONTH) &&
                     Integer.parseInt(day) == today.get(Calendar.DAY_OF_MONTH)) {
@@ -59,8 +78,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
                 holder.dayText.setTextColor(Color.WHITE);
             }
 
-            String month = String.format("%02d", calendar.get(Calendar.MONTH) + 1); // 月份格式化为两位数
-            String dayWithLeadingZero = String.format("%02d", Integer.parseInt(day)); // 日期格式化为两位数
+            String month = String.format("%02d", calendar.get(Calendar.MONTH) + 1);
+            String dayWithLeadingZero = String.format("%02d", Integer.parseInt(day));
 
             String dateKey = calendar.get(Calendar.YEAR) + "-" + month + "-" + dayWithLeadingZero;
 
